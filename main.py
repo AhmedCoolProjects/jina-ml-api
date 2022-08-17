@@ -2,9 +2,9 @@ import datetime
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from code_esi_chatbot.classes.ChatBot import ChatBot
-from handwriting_digits_recognation.classes.handwriting_digits_recognation import HandwritingDigitsRecognation
+# from pydantic import BaseModel
+# from code_esi_chatbot.classes.ChatBot import ChatBot
+# from handwriting_digits_recognation.classes.handwriting_digits_recognation import HandwritingDigitsRecognation
 from image_cartoonifying.classes.image_cartoonifying import Cartoonifying
 
 
