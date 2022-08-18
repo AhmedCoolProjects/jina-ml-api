@@ -2,10 +2,11 @@ import datetime
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-# from pydantic import BaseModel
+from pydantic import BaseModel
 # from code_esi_chatbot.classes.ChatBot import ChatBot
 # from handwriting_digits_recognation.classes.handwriting_digits_recognation import HandwritingDigitsRecognation
 from image_cartoonifying.classes.image_cartoonifying import Cartoonifying
+from breast_cancer_prediction.classes.main import BreastCancerPrediction
 
 
 
@@ -53,6 +54,19 @@ async def image_cartoonify_post(uploaded_image: UploadFile = File(...)):
     with open(file_location, "wb+") as file_object:
         file_object.write(image_result)
     return file_name
+
+# ---------------- https://jina-ml.vercel.app/project/breast-cancer-prediction ---------------------
+
+class breastCancerPredictionPost(BaseModel):
+    data_list: list
+
+@app.post("/api/ml/breast-cancer-prediction")
+async def breast_cancer_prediction(data: breastCancerPredictionPost):
+    # start model
+    breastCancerPredictionObject = BreastCancerPrediction(data.data_list)
+    result = breastCancerPredictionObject.predict()
+    # end model
+    return {"result":result}
 
 # # for handwriting digits recognation
 
