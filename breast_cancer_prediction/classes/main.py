@@ -1,11 +1,13 @@
+import os
 import pickle as pkl
 
 
 
 class BreastCancerPrediction():
     def __init__(self, data_list):
-        model_path = "breast_cancer_prediction\\utils\\lr_model.pkl"
-        sc_path = "breast_cancer_prediction\\utils\\sc.pkl"
+        model_path_pardir = os.path.join(os.path.dirname(__file__), os.path.pardir)
+        model_path = os.path.join(model_path_pardir, "utils", "lr_model.pkl")
+        sc_path = os.path.join(model_path_pardir, "utils", "sc.pkl")
         self.data_list = data_list
         with open(model_path, 'rb') as f:
             self.model = pkl.load(f)

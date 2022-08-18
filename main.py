@@ -60,8 +60,12 @@ async def image_cartoonify_post(uploaded_image: UploadFile = File(...)):
 class breastCancerPredictionPost(BaseModel):
     data_list: list
 
+@app.get("/api/ml/breast-cancer-prediction")
+def breast_cancer_prediction():
+    return {"message": "Breast Cancer Prediction"}
+
 @app.post("/api/ml/breast-cancer-prediction")
-async def breast_cancer_prediction(data: breastCancerPredictionPost):
+async def breast_cancer_prediction_post(data: breastCancerPredictionPost):
     # start model
     breastCancerPredictionObject = BreastCancerPrediction(data.data_list)
     result = breastCancerPredictionObject.predict()
